@@ -2,5 +2,21 @@
 {% block content %}
 
 <div class="container mt-5">
-
+    <section class="section">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="main-content my-5">
+                    <h4 class="text-center">{{article.published_date}}</h4>
+                    <h1 class="text-center">{{article.title}}</h1>
+                    <div class="row mt-5">
+                        <img src="{{article.post_image.url}}" alt="blog_detail image" class="container-fluid" height="300px">
+                    </div>
+                    <div class="col-md-5" style="text-align: justify;">
+                        <p>{{article.content}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock content %}

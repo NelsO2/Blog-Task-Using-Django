@@ -8,9 +8,8 @@
                 {% for article in articles %}
                 <div class="main-content p-5">
                     <a href="{% url 'details' article.slug %}" style="text-decoration: none; color: black">
-                            <p class="text-center">{{article.author}}</p>
                             <h4 class="text-center">{{article.published_date}}</h4>
-                            <h2 class="text-center">{{article.title}}/h2>
+                            <h2 class="text-center">{{article.title}}</h2>
                             <div class="row">
                             <div class="col-md-6">
                                 <p>{{article.content}}</p>
