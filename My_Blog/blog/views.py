@@ -3,11 +3,16 @@ from .forms import SignupForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from main.models import Article
+from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
     articles = Article.objects.all()
-    return render(request, 'home.html', {'articles':articles})
+    paginator = Paginator(articles, 2)
+    pageNumber = request.GET.get('page')
+    homeData = paginator.get_page(pageNumber)
+    totalPage = homeData.paginator.num_pages
+    return render(request, 'home.html', {'homeData':homeData, 'totalPage':totalPage, 'listofPages':[n+1 for n in range(totalPage)]})
 
 def signup_user(request):
     if request.method == 'POST':
@@ -18,7 +23,7 @@ def signup_user(request):
 
     else:
         form = SignupForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'signup.html', {'form':form})
 
   
 def login_user(request):

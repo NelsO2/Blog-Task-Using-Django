@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container">
+<div class="container mt-5">
     <section class="section">
         <div class="row justify-comtent-center">
             <div class="col-md-10">
-                {% for article in articles %}
+                {% for article in homeData %}
                 <div class="main-content p-5">
                     <a href="{% url 'details' article.slug %}" style="text-decoration: none; color: black">
                             <h4 class="text-center">{{article.published_date}}</h4>
@@ -22,6 +22,23 @@
                     
                 </div>
                 {% endfor %}
+                <div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                        {% if homeData.has_previous %}
+                            <li class="page-item"><a class="page-link" href="/?page={{homeData.previous_page_number}}">1</a></li>
+                        {% endif %}
+                        {% for n in listofPages %}
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        {% endfor %}
+                        {% if homeData.has_next %}
+                            <li class="page-item"><a class="page-link" href="/?page={{homeData.next_page_number}}">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="/?page={{totalPage}}">Last</a></li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
 
